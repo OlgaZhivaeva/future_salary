@@ -124,6 +124,5 @@ def main():
     pprint(get_statistics_for_sj(languages, secret_key))
 
 
-
 if __name__ == "__main__":
     main()
