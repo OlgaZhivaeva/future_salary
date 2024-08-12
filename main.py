@@ -129,7 +129,6 @@ def get_statistics_table(statistics, title):
     return output_table.table
 
 
-
 def main():
     env = Env()
     env.read_env()
