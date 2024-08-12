@@ -2,7 +2,7 @@ import requests
 import time
 from environs import Env
 from statistics import mean
-from pprint import pprint
+from terminaltables import AsciiTable
 
 
 def predict_salary(salary_from, salary_to):
@@ -114,14 +114,39 @@ def get_statistics_for_sj(languages, secret_key):
     return statistics
 
 
+def get_statistics_table(statistics, title):
+    statistics_table = [
+        ['Язык программирования', 'Вакансий найдено', 'Вакансий обработано', 'Средняя зарплата'],
+    ]
+    for language, vacancies in statistics.items():
+        statistics_table.append([
+            language,
+            vacancies['vacancies_found'],
+            vacancies['vacancies_processed'],
+            vacancies['average_salary'],
+        ])
+    output_table = AsciiTable(statistics_table, title)
+    return output_table.table
+
+
+
 def main():
     env = Env()
     env.read_env()
     secret_key = env.str('SECRET_KEY')
     languages = ['C#', 'Objective-C', 'Ruby', 'Java', 'C', 'TypeScript',
                  'Scala','Go', 'Swift', 'C++', 'PHP', 'JavaScript', 'Python']
-    pprint(get_statistics_for_hh(languages))
-    pprint(get_statistics_for_sj(languages, secret_key))
+
+    statistics = get_statistics_for_hh(languages)
+    title = 'HeadHunter Moscow'
+    statistics_table = get_statistics_table(statistics, title)
+    print(statistics_table)
+
+    statistics = get_statistics_for_sj(languages, secret_key)
+    title = 'SuperJob Moscow'
+    statistics_table = get_statistics_table(statistics, title)
+    print()
+    print(statistics_table)
 
 
 if __name__ == "__main__":
