@@ -63,10 +63,11 @@ def get_statistics_for_hh(languages):
                 if salary:
                     salaries.append(salary)
 
-        statistics[language] = {}
-        statistics[language]['vacancies_processed'] = len(salaries)
-        statistics[language]['average_salary'] = '-' if not salaries else int(mean(salaries))
-        statistics[language]['vacancies_found'] = vacancies['found']
+        statistics[language] = {
+            'vacancies_processed': len(salaries),
+            'average_salary': '-' if not salaries else int(mean(salaries)),
+            'vacancies_found': vacancies['found']
+        }
 
     return statistics
 
@@ -109,10 +110,11 @@ def get_statistics_for_sj(languages, secret_key):
             page += 1
             time.sleep(0.5)
 
-        statistics[language] = {}
-        statistics[language]['vacancies_processed'] = len(salaries)
-        statistics[language]['average_salary'] = '-' if not salaries else int(mean(salaries))
-        statistics[language]['vacancies_found'] = vacancies['total']
+        statistics[language] = {
+            'vacancies_processed': len(salaries),
+            'average_salary': '-' if not salaries else int(mean(salaries)),
+            'vacancies_found': vacancies['total']
+        }
 
     return statistics
 
@@ -137,7 +139,7 @@ def main():
     env.read_env()
     secret_key = env.str('SECRET_KEY')
     languages = ['C#', 'Objective-C', 'Ruby', 'Java', 'C', 'TypeScript',
-                 'Scala','Go', 'Swift', 'C++', 'PHP', 'JavaScript', 'Python']
+                 'Scala', 'Go', 'Swift', 'C++', 'PHP', 'JavaScript', 'Python']
 
     statistics = get_statistics_for_hh(languages)
     title = 'HeadHunter Moscow'
