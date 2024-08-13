@@ -35,12 +35,14 @@ def get_statistics_for_hh(languages):
         salaries = []
         page = 0
         pages_number = 101
+        id_of_Moscow = 1
+        last_30_days = 30
 
         while page < pages_number:
             params = {
                 'text': f'Программист {language}',
-                'area': 1,
-                'period': 30,
+                'area': id_of_Moscow,
+                'period': last_30_days,
                 'page': page
             }
 
@@ -75,6 +77,9 @@ def get_statistics_for_sj(languages, secret_key):
         salaries = []
         page = 0
         more = True
+        programming_development = 48
+        id_of_Moscow = 4
+        for_all_time = 0
 
         while more:
             headers = {
@@ -82,11 +87,10 @@ def get_statistics_for_sj(languages, secret_key):
             }
             params = {
                 'keyword': language,
-                'catalogues': 48,
-                'town': 4,
+                'catalogues': programming_development,
+                'town': id_of_Moscow,
                 'page': page,
-                'count': 20,
-                'period': 0
+                'period': for_all_time
             }
             response = requests.get('https://api.superjob.ru/2.0/vacancies/',
                                     headers=headers, params=params)
