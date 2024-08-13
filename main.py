@@ -62,11 +62,11 @@ def get_statistics_for_hh(languages):
                 salary = predict_rub_salary_hh(vacancy)
                 if salary:
                     salaries.append(salary)
-        if salaries:
-            statistics[language] = {}
-            statistics[language]['vacancies_processed'] = len(salaries)
-            statistics[language]['average_salary'] = int(mean(salaries))
-            statistics[language]['vacancies_found'] = json_vacancies['found']
+
+        statistics[language] = {}
+        statistics[language]['vacancies_processed'] = len(salaries)
+        statistics[language]['average_salary'] = '-' if not salaries else int(mean(salaries))
+        statistics[language]['vacancies_found'] = json_vacancies['found']
 
     return statistics
 
@@ -109,11 +109,10 @@ def get_statistics_for_sj(languages, secret_key):
             page += 1
             time.sleep(0.5)
 
-        if salaries:
-            statistics[language] = {}
-            statistics[language]['vacancies_processed'] = len(salaries)
-            statistics[language]['average_salary'] = int(mean(salaries))
-            statistics[language]['vacancies_found'] = json_vacancies['total']
+        statistics[language] = {}
+        statistics[language]['vacancies_processed'] = len(salaries)
+        statistics[language]['average_salary'] = '-' if not salaries else int(mean(salaries))
+        statistics[language]['vacancies_found'] = json_vacancies['total']
 
     return statistics
 
