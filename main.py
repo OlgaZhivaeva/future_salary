@@ -24,7 +24,7 @@ def predict_rub_salary_hh(vacancy):
 def predict_rub_salary_for_sj(vacancy):
     if vacancy['currency'] != 'rub':
         return None
-    if not (vacancy['payment_from'] or vacancy['payment_from']):
+    if not (vacancy['payment_from'] or vacancy['payment_to']):
         return None
     return predict_salary(vacancy['payment_from'], vacancy['payment_to'])
 
