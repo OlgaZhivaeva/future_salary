@@ -137,7 +137,7 @@ def get_statistics_table(statistics, title):
 def main():
     env = Env()
     env.read_env()
-    secret_key = env.str('SECRET_KEY')
+    secret_key = env.str('SJ_SECRET_KEY')
     languages = ['C#', 'Objective-C', 'Ruby', 'Java', 'C', 'TypeScript',
                  'Scala', 'Go', 'Swift', 'C++', 'PHP', 'JavaScript', 'Python']
 

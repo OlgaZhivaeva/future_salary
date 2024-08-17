@@ -14,7 +14,7 @@ pip install -r requirements.txt
 
 Next, you need to create a file with permission.env and add parameters to it:
 ```commandline
-SECRET_KEY=ваш токен 
+SJ_SECRET_KEY=ваш токен 
 ```
 
 In order to receive a token, you must register the product on the SuperJob website.
